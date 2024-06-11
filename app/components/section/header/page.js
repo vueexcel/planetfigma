@@ -116,7 +116,7 @@ export default function ExampleComponent() {
             SIMPLIFIED ACCESS
           </p>
           <p className="text-gray-500 w-full lg:w-80 text-center lg:text-left mx-auto lg:mx-0">
-            One login provides access to all of Deva. me's AI feature, streaming
+            One login provides access to all of Deva. me &apos s AI feature, streaming
             your experience
           </p>
           <hr className="mt-10 border-gray-700" />
@@ -124,7 +124,7 @@ export default function ExampleComponent() {
             EFFORTLESS INTERACTION
           </p>
           <p className="text-gray-500 w-full lg:w-80 text-center lg:text-left mx-auto lg:mx-0">
-            One login provides access to all of Deva. me's AI feature, streaming
+            One login provides access to all of Deva. me &apos s AI feature, streaming
             your experience
           </p>
           <hr className="mt-10 border-gray-700" />
@@ -132,7 +132,7 @@ export default function ExampleComponent() {
             ENHANCED SECURITY
           </p>
           <p className="text-gray-500 w-full lg:w-80 text-center lg:text-left mx-auto lg:mx-0">
-            One login provides access to all of Deva. me's AI feature, streaming
+            One login provides access to all of Deva. me &apos s AI feature, streaming
             your experience
           </p>
           <hr className="mt-10 border-gray-700" />
