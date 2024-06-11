@@ -43,7 +43,6 @@ export default function ExampleComponent() {
           height={800}
         />
       </div>
-      jsx Copy code
       <div className="flex flex-col lg:flex-row">
         {/* div 1 */}
         <div className="flex flex-col lg:w-1/4 border border-gray-800 lg:ml-10 p-4">
