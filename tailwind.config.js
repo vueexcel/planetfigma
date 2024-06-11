@@ -13,6 +13,13 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        'custom-gray': '#282B30',
+      },
+      fontFamily: {
+        "abc-monument": ['"ABC Monument Grotesk"', "sans-serif"],
+        "lakonet": ['Lakonet', 'sans-serif']
+      },
     },
   },
   plugins: [],
