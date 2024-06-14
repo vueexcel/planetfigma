@@ -1,12 +1,29 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Image from "next/image";
+import { useEffect } from "react";
 
 const HeroBar = () => {
     const { ref, inView } = useInView({
-        triggerOnce: true, 
-        threshold: 0.1  
+        triggerOnce: true,
+        threshold: 0.1
     });
+
+    useEffect(() => {
+        const iframe = document.getElementById('spline-iframe');
+        if (iframe) {
+            iframe.onload = () => {
+                try {
+                    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                    const linkToRemove = iframeDocument.querySelector('a');
+                    if (linkToRemove) {
+                        linkToRemove.remove();
+                    }
+                } catch (error) {
+                    console.error("Cannot access iframe content: ", error);
+                }
+            };
+        }
+    }, []);
 
     const titleVariants = {
         hidden: { opacity: 0, y: -50 },
@@ -51,7 +68,7 @@ const HeroBar = () => {
                 </motion.h2>
 
                 <motion.div
-                    className="flex items-center justify-center w-full px-5 mt-12"
+                    className="relative flex items-center justify-center w-full px-5 mt-12"
                     style={{
                         background: "linear-gradient(to top, #0F1012 70%, transparent 100%)",
                     }}
@@ -60,13 +77,15 @@ const HeroBar = () => {
                     variants={imageVariants}
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    <Image
-                        src="/images/herobar-image.png"
-                        alt="Hero Bar"
-                        height={900}
-                        width={900}
-                        className="rounded-full drop-shadow-xl"
-                    />
+                    <div className="relative w-full overflow-hidden rounded-full drop-shadow-xl" style={{ maxWidth: 900 }}>
+                        <iframe
+                            id="spline-iframe"
+                            src="https://my.spline.design/magicsphere-6cbe77d7ffd64939351664e036f1ac89/"
+                            frameBorder="0"
+                            className="w-full aspect-square"
+                            style={{ maxWidth: 900 }}
+                        ></iframe>
+                    </div>
                 </motion.div>
             </div>
             <motion.p
