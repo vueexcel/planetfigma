@@ -89,7 +89,7 @@ const HeroBar = () => {
                 </motion.div>
             </div>
             <motion.p
-                className="max-w-4xl mx-auto mt-32 text-2xl text-center text-white uppercase max-1200"
+                className="max-w-4xl mx-auto mt-32 text-2xl text-center text-white uppercase"
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={textVariants}
