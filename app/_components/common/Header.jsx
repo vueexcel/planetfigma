@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image'
-import Link from 'next/link'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = () => {
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(false);
     const onMenuClick = () => {
-        setShowMenu(!showMenu)
-    }
+        setShowMenu(!showMenu);
+    };
 
     const menuItems = [
         { name: 'BRIDGE', href: '#' },
@@ -16,11 +17,21 @@ const Navbar = () => {
         { name: 'GOVERNANCE', href: '#' },
         { name: 'EXPLORE', href: '#' },
         { name: 'ABOUT', href: '#' },
-    ]
+    ];
+
+    const menuVariants = {
+        hidden: { opacity: 0, height: 0 },
+        visible: { opacity: 1, height: 'auto' }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: -20 },
+        visible: { opacity: 1, y: 0 }
+    };
 
     return (
-        <div className={"bg-[#0F1012] flex items-center justify-center w-full border-b-0 mg:border-b mg:border-b-slate-800"}>
-            <div className="flex flex-col items-center w-full mx-auto overflow-hidden mg:px-4 max-w-7xl mg:flex-row">
+        <div className="bg-[#0F1012] flex items-center justify-center w-full border-b-0 mg:border-b mg:border-b-slate-800">
+            <div className="flex flex-col items-center w-full mx-auto overflow-hidden max-1200 mg:px-4 max-w-7xl mg:flex-row">
                 <div className='flex items-center justify-between w-full px-4 py-2 border-b mg:px-0 mg:py-5 border-b-slate-800 mg:border-b-0 mg:w-auto'>
                     <Link href={'/'} className='hover:opacity-90'>
                         <Image 
@@ -36,24 +47,38 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                <div className='flex flex-col items-center justify-between w-full h-0 mt-4 transition-all mg:mt-0 mg:ml-12 mg:flex-row' style={{ height: showMenu ? 'auto' : '0' }}>
+                <motion.div 
+                    className='flex flex-col items-center justify-between w-full mt-4 transition-all mg:mt-0 mg:ml-12 mg:flex-row' 
+                    initial="hidden"
+                    animate={showMenu ? "visible" : "hidden"}
+                    variants={menuVariants}
+                >
                     <ul className='flex flex-col items-center mg:flex-row'>
                         {menuItems.map((item, index) => (
-                            <li key={index}>
+                            <motion.li 
+                                key={index}
+                                variants={itemVariants}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                            >
                                 <Link href={item.href} className='block px-4 py-4 text-sm text-gray-500 hover:opacity-80 text-uppercase'>
                                     {item.name}
                                 </Link>
-                            </li>
+                            </motion.li>
                         ))}
                     </ul>
 
-                    <button className='mt-8 mg:mt-0 px-4 py-1.5 text-sm bg-white rounded-sm hover:opacity-90 active:scale-95 text-slate-900' type='button'>
+                    <motion.button 
+                        className='mt-8 mg:mt-0 px-4 py-1.5 text-sm bg-white rounded-sm hover:opacity-90 active:scale-95 text-slate-900' 
+                        type='button'
+                        variants={itemVariants}
+                        transition={{ duration: 0.3, delay: menuItems.length * 0.1 }}
+                    >
                         Connect Wallet
-                    </button>
-                </div>
+                    </motion.button>
+                </motion.div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

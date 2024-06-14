@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import Image from "next/image";
 
 const Contributor = () => {
@@ -22,8 +24,15 @@ const Contributor = () => {
         }
     ];
 
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+    const fadeIn = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
     return (
-        <div className="w-full px-6 mt-32 mb-20 text-white">
+        <div className="w-full px-6 mt-32 mb-20 text-white max-1200">
             <div className="flex flex-col items-start mb-12 mg:px-8 mg:items-center mg:flex-row">
                 <div className="mb-12">
                     <h5 className="max-w-sm mb-4 text-3xl uppercase">
@@ -41,7 +50,13 @@ const Contributor = () => {
                     className="h-auto block mx-auto w-[460px]"
                 />
             </div>
-            <div className="flex flex-col justify-between w-full px-5 mx-auto border border-gray-800 sm:flex-row">
+            <motion.div
+                className="flex flex-col justify-between w-full px-5 mx-auto border border-gray-800 sm:flex-row"
+                ref={ref}
+                initial="hidden"
+                animate={inView ? 'visible' : 'hidden'}
+                variants={fadeIn}
+            >
                 {contributionItems.map((item, index) => (
                     <div key={index} className={`w-full p-5 border-b sm:border-r sm:border-r-gray-800 ${index === contributionItems.length - 1 ? 'border-b-0 mg:border-r-0' : 'border-b-gray-800 sm:border-b-0'}`}>
                         <Image 
@@ -57,7 +72,7 @@ const Contributor = () => {
                         </p>
                     </div>
                 ))}
-            </div>
+            </motion.div>
         </div>
     );
 }

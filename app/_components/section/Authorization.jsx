@@ -1,6 +1,16 @@
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import Image from "next/image";
 
+const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 const Authorization = () => {
+    const { ref: leftRef, inView: leftInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+    const { ref: rightRef, inView: rightInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
     const user = {
         name: "Elon Musk",
         username: "@elonmusk",
@@ -34,9 +44,16 @@ const Authorization = () => {
     ];
 
     return (
-        <div className="flex flex-col w-full px-6 my-20 mg:mt-32 mg:flex-row">
+        <div className="flex flex-col w-full px-6 my-20 mg:mt-32 mg:flex-row max-1200 xl:px-0">
             <h5 className="mb-8 text-2xl text-white uppercase mg:hidden">DEVA SSO</h5>
-            <div className="flex flex-col items-center p-4 pb-0 border border-gray-800 rounded-sm mg:max-w-[380px]">
+
+            <motion.div
+                className="flex flex-col items-center p-4 pb-0 border border-gray-800 rounded-sm mg:max-w-[380px] sm:ml-8 2xl:ml-0"
+                ref={leftRef}
+                initial="hidden"
+                animate={leftInView ? 'visible' : 'hidden'}
+                variants={fadeIn}
+            >
                 <Image 
                     src="/images/auth.png"
                     alt="Auth"
@@ -46,7 +63,7 @@ const Authorization = () => {
                 />
 
                 <h5 className="mt-8 text-2xl text-center text-white">10Planet Forum wants to access your Deva account.</h5>
-            
+
                 <div className="flex items-center my-8 text-white">
                     <Image 
                         src={user.avatar}
@@ -82,9 +99,15 @@ const Authorization = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </motion.div>
 
-            <div className="w-full mg:ml-16">
+            <motion.div
+                className="w-full mg:ml-16"
+                ref={rightRef}
+                initial="hidden"
+                animate={rightInView ? 'visible' : 'hidden'}
+                variants={fadeIn}
+            >
                 <h5 className="hidden pb-16 mt-4 text-5xl text-white uppercase border-b border-b-gray-800 mg:block">DEVA SSO</h5>
                 <ul className="block">
                     {details.map((detail, index) => (
@@ -96,9 +119,9 @@ const Authorization = () => {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </motion.div>
         </div>
     );
-}
+};
 
 export default Authorization;

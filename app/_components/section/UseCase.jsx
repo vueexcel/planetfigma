@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import Image from "next/image";
 
 const UseCase = () => {
@@ -7,9 +9,16 @@ const UseCase = () => {
         { src: "/images/t3.png", alt: "Karma Rewards System", text: "Karma Rewards System" }
     ];
 
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+    const fadeIn = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
     return (
         <div className="w-full px-6 mb-12 mt-28">
-            <div className="w-full mg:flex">
+            <div className="w-full mg:flex max-1200">
                 <div className="block">
                     <Image
                         src={"/images/play.png"}
@@ -24,8 +33,14 @@ const UseCase = () => {
                     <p className="mt-4 text-sm text-center text-white mg:text-start">Deva is a revolutionary AI-driven application within the 10Planet ecosystem, harnessing our advanced blockchain infrastructure.</p>
                 </div>
             </div>
-            <div className="w-full mt-10">
-                <ul className="items-center w-full border border-gray-800 mg:flex mg:border-b-0 mg:border-r-0 mg:border-l-0">
+            <motion.div
+                className="w-full mt-10 border border-gray-800 mg:border-b-0 mg:border-r-0 mg:border-l-0"
+                ref={ref}
+                initial="hidden"
+                animate={inView ? 'visible' : 'hidden'}
+                variants={fadeIn}
+            >
+                <ul className="items-center w-full mg:flex max-1200">
                     {useCaseItems.map((item, index) => (
                         <li key={index} className={`flex items-center w-full p-3 px-4 border-b mg:py-4 mg:border-b-0 ${index === useCaseItems.length - 1 ? 'border-b-0' : 'border-b-gray-800'}`}>
                             <Image
@@ -39,7 +54,7 @@ const UseCase = () => {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </motion.div>
         </div>
     );
 }
