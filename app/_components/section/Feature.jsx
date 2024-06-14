@@ -29,7 +29,7 @@ const Feature = () => {
 
     return (
         <div className="justify-around w-full px-4 mt-32 mg:flex mg:px-12 max-1200">
-            <motion.div 
+            <motion.div
                 ref={ref}
                 initial="hidden"
                 animate={inView ? 'visible' : 'hidden'}
@@ -46,12 +46,8 @@ const Feature = () => {
                 </div>
             </motion.div>
 
-            <ul ref={scrollView} className="flex ml-6 items-center mt-6 mg:max-w-[500px] overflow-x-auto pointer-events-none mg:pr-8 mg:mt-0 mg:flex-col no-scroll-view" style={{ transform: `translateX(-${scrollIndex * 100}%)` }}>
-                <motion.li 
-                    ref={ref}
-                    initial="hidden"
-                    animate={inView ? 'visible' : 'hidden'}
-                    variants={fadeIn}
+            <ul ref={scrollView} className="w-full flex sm:ml-6 items-center mt-6 mg:max-w-[500px] overflow-x-auto pointer-events-none mg:pr-8 mg:mt-0 mg:flex-col no-scroll-view">
+                <li
                     className={`flex-shrink-0 w-full mb-4 mr-1 mg:flex-shrink mg:mr-0 mg:mb-10`}
                 >
                     <Image
@@ -62,12 +58,8 @@ const Feature = () => {
                     />
                     <h5 className="my-4 text-white uppercase">Incentivized contribution</h5>
                     <p className="text-sm text-white">10Planet offers ways to thrive and get rewarded for your contribution to Als and AI economies</p>
-                </motion.li>
-                <motion.li 
-                    ref={ref}
-                    initial="hidden"
-                    animate={inView ? 'visible' : 'hidden'}
-                    variants={fadeIn}
+                </li>
+                <li
                     className={`flex-shrink-0 w-full mb-4 mr-1 mg:flex-shrink mg:mr-0 mg:mb-10`}
                 >
                     <Image
@@ -78,12 +70,8 @@ const Feature = () => {
                     />
                     <h5 className="my-4 text-white uppercase">BEAUTIFUL UX & DX</h5>
                     <p className="text-sm text-white">Seamless user & developer experience, making it easy to engage with AI-DApps and infrastructure</p>
-                </motion.li>
-                <motion.li 
-                    ref={ref}
-                    initial="hidden"
-                    animate={inView ? 'visible' : 'hidden'}
-                    variants={fadeIn}
+                </li>
+                <li
                     className={`flex-shrink-0 w-full mb-4 mr-1 mg:flex-shrink mg:mr-0 mg:mb-10`}
                 >
                     <Image
@@ -94,12 +82,8 @@ const Feature = () => {
                     />
                     <h5 className="my-4 text-white uppercase">MERITOCRATIC REWARDS</h5>
                     <p className="text-sm text-white">Earn $10COIN (10P) directly for your contributions. ensuring a straightforward and equitable reward process</p>
-                </motion.li>
-                <motion.li 
-                    ref={ref}
-                    initial="hidden"
-                    animate={inView ? 'visible' : 'hidden'}
-                    variants={fadeIn}
+                </li>
+                <li
                     className={`flex-shrink-0 w-full mb-4 mr-1 mg:flex-shrink mg:mr-0 mg:mb-10`}
                 >
                     <Image
@@ -110,7 +94,7 @@ const Feature = () => {
                     />
                     <h5 className="my-4 text-white uppercase">EVM & IBC COMPATIBLE</h5>
                     <p className="text-sm text-white">Familiar to Web3 developers and compatible with Sovereign Chains</p>
-                </motion.li>
+                </li>
             </ul>
 
             <div className="flex items-center justify-between w-full py-2 border-t border-t-gray-800 mg:hidden">
